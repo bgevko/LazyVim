@@ -48,6 +48,7 @@ return {
           hide_gitignored = true,
           hide_dotfiles = false,
           hide_hidden = false,
+          hide_by_name = { '__pycache__' },
         }
       },
       window = {
@@ -232,10 +233,10 @@ return {
               Util.telescope("find_files", { hidden = true, default_text = line })()
             end,
             ["<C-j>"] = function(...)
-              return require("telescope.actions").cycle_history_next(...)
+              return require("telescope.actions").move_selection_next(...)
             end,
-            ["<C-l>"] = function(...)
-              return require("telescope.actions").cycle_history_prev(...)
+            ["<C-k>"] = function(...)
+              return require("telescope.actions").move_selection_previous(...)
             end,
             ["<C-f>"] = function(...)
               return require("telescope.actions").preview_scrolling_down(...)
