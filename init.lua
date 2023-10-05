@@ -14,6 +14,8 @@ require("lazyvim.config").init()
 require("lazy").setup({
   spec = {
     { import = "lazyvim.plugins" },
+    { import = "lazyvim.plugins.extras.lang.clangd" },
+    { import = "lazyvim.plugins.extras.lang.cmake" },
   },
   defaults = {
     lazy = false,

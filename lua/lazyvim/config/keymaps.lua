@@ -47,7 +47,13 @@ map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
 -- Search and replace
 map("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace word under cursor" })
 
---------------------
+-- Set markdown C block
+map("n", "<leader>bc", ":put='```c'<Bar>put<Bar>put='```'<CR>", { desc = "Insert code block and paste" })
+-- bash block
+map("n", "<leader>bB", ":put='```bash'<Bar>put<Bar>put='```'<CR>", { desc = "Insert bash block and paste" })
+
+-- run local build script
+map("n", "<leader>;", ":!./build.sh<CR>", { desc = "Run local script 'build.sh'" })
 -- LazyVim Defaults
 --------------------
 

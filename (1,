@@ -1,0 +1,84 @@
+## Write
+```C
+#include <unistd.h>
+
+// Man page for write system call
+// https://www.man7.org/linux/man-pages/man2/write.2.html
+
+int main(void) {
+  write(1, "Hello World\n", 12);
+  return 0;
+}```
+
+## Creating a file
+```C
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+int main(void) {
+  char file[] = "grades.txt";
+  // Open the file "grades.txt"
+  // O_WRONLY means open the file only for writing
+  // O_CREAT means create the file if it doesn't exit
+  // O_TRUNC means truncate the file if it already exists
+  // 00600 is the mode which sets file permissions that we will study later
+  int file_descriptor = open(file, O_WRONLY | O_CREAT|O_TRUNC, 00600);
+  if (file_descriptor < 0){
+		fprintf(stderr, "Could not open %s\n", file);
+		exit(1);
+	}
+	close(file_descriptor);
+  return 0;
+}
+```
+
+## Reading a file and writing to a file
+The following program:
+- Uses the open system call to create a new file named "newFile.txt" or if should a file exists, truncates it and opens it, then
+- Uses the write system call to write the text "THE BUSINESS" to this a file, then
+- Uses the read system call to read the contents of this file and prints them to the terminal.
+
+```C
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/stat.h>
+
+int main(void){
+	int file_descriptor;
+	char* newFilePath = "./newFile.txt";
+	char* giveEm = "THE BUSINESS\n";
+	
+	ssize_t nread, nwritten;
+	char readBuffer[32];
+	
+  // Open the file using the open system call
+  // The flag O_RDWR means the file should be opened for reading and writing
+  // The flag O_CREAT means that if the file doesn't exist, open should create it
+  // The flag O_TRUNC means that if the file already exits, open should truncate it.
+	file_descriptor = open(newFilePath, O_RDWR | O_CREAT | O_TRUNC, 00600);
+	if (file_descriptor == -1){
+		printf("open() failed on \"%s\"\n", newFilePath);
+		perror("In main()");
+		exit(1);
+	}
+	
+  // Write to the file using the write system call
+	nwritten = write(file_descriptor, giveEm, strlen(giveEm) * sizeof(char));
+  // Clear out the array before using it
+	memset(readBuffer, '\0', sizeof(readBuffer)); 
+  // Reset the file pointer to the beginning of the file
+	lseek(file_descriptor, 0, SEEK_SET); 
+  // Read from the file using the read system call
+	nread = read(file_descriptor, readBuffer, sizeof(readBuffer));
+	printf("nread = %zd, nwritten = %zd\n", nread, nwritten);
+	
+	printf("File contents:\n%s", readBuffer);
+	
+	return 0;
+}
+```
