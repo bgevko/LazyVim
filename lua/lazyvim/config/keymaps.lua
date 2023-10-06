@@ -19,6 +19,9 @@ end
 map("i", "jk", "<Esc>", { noremap = true, silent = true, desc = "jk to escape" })
 map("t", "jk", "<C-\\><C-n>")
 
+-- Exit visual mode
+map("v", "jk", "<Esc>", { noremap = true, silent = true, desc = "jk to exit visual mode" })
+
 -- Open explorer
 map("n", "<leader>pv", vim.cmd.Ex, { desc = "Open Explorer" })
 
