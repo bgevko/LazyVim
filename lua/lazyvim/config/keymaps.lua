@@ -57,6 +57,10 @@ map("n", "<leader>bB", ":put='```bash'<Bar>put<Bar>put='```'<CR>", { desc = "Ins
 
 -- run local build script
 map("n", "<leader>;", ":!./build.sh<CR>", { desc = "Run local script 'build.sh'" })
+
+-- Surround word with ``
+map("n", "<leader>`", "<Plug>(nvim-surround-normal)iw`", { desc = "Surround word with ``" })
+
 -- LazyVim Defaults
 --------------------
 
@@ -87,7 +91,7 @@ else
   map("n", "bl", "<cmd>bnext<cr>", { desc = "Next buffer" })
 end
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+-- map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
