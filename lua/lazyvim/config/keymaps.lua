@@ -54,6 +54,8 @@ map("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { 
 map("n", "<leader>bc", ":put='```c'<Bar>put<Bar>put='```'<CR>", { desc = "Insert code block and paste" })
 -- bash block
 map("n", "<leader>bB", ":put='```bash'<Bar>put<Bar>put='```'<CR>", { desc = "Insert bash block and paste" })
+-- python block
+map("n", "<leader>bp", ":put='```python'<Bar>put<Bar>put='```'<CR>", { desc = "Insert python block and paste" })
 
 -- run local build script
 map("n", "<leader>;", ":!./build.sh<CR>", { desc = "Run local script 'build.sh'" })
