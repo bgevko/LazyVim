@@ -151,6 +151,7 @@ return {
   -- Better text-objects
   {
     "echasnovski/mini.ai",
+    enabled = false,
     -- keys = {
     --   { "a", mode = { "x", "o" } },
     --   { "i", mode = { "x", "o" } },
